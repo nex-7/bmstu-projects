@@ -22,7 +22,7 @@ int main()
 			std::cout << e.what();
 		}
 
-		std::cout << tree << std::endl;
+		std::cout << tree;
 
 		try
 		{
@@ -32,7 +32,7 @@ int main()
 		}
 		catch (const TNotFoundException & e)
 		{
-			std::cout << e.what() << std::endl;
+			std::cout << e.what();
 		}
 	}
 	system("pause");

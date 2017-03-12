@@ -14,6 +14,7 @@ struct TExistElementException
 	}
 };
 
+
 struct TNotFoundException
 	: public std::exception
 {
@@ -26,6 +27,7 @@ class TBinaryTree
 {
 public:
 	using value_type = int;
+
 	struct TNode
 	{
 		value_type Data;
@@ -55,6 +57,7 @@ public:
 
 private:
 	TNode * Root = nullptr;
+
 	static void Print(std::ostream & out, TBinaryTree::TNode * node)
 	{
 		if (node)
@@ -62,19 +65,6 @@ private:
 			Print(out, node->Left);
 			out << std::endl << node->Data;
 			Print(out, node->Right);
-		}
-	}
-
-	void Findelem(TNode*& curNode, TNode*& prevNode, const value_type & value) 
-	{
-		curNode = Root;
-		while (curNode) 
-		{
-			prevNode = curNode;
-			if (curNode->Data > value)
-				curNode = curNode->Left;
-			else
-				curNode = curNode->Right;
 		}
 	}
 
@@ -119,24 +109,25 @@ public:
 		return true;
 	}
 
-	// Требуется реализовать функцию поиска элемента +
-	// Если узел содержит искомый элемент, то функция возвращает указатель на этот узел +
-	// Если элемента в дереве не найдено, то функция генерирует исключение TNotFoundException +
+	// Требуется реализовать функцию поиска элемента
+	// Если узел содержит искомый элемент, то функция возвращает указатель на этот узел
+	// Если элемента в дереве не найдено, то функция генерирует исключение TNotFoundException
 	TNode * Find(const value_type & value)
 	{
-		TNode * curNode;
-		TNode * prevNode;
-
-		if (Root == nullptr) 
+		TNode * curNode = Root;
+		do
 		{
-			throw TNotFoundException("Not found element ");
-		}
-		Findelem(curNode, prevNode, value);
-		if (curNode != nullptr)
-			return curNode;
-		else
-			throw TNotFoundException("Not found element ");
+			if (curNode->Data == NULL)
+				return curNode;
+			if (curNode->Data != NULL)
+		
+				curNode = curNode->Left;
+			else
+				curNode = curNode->Right;
+		} while (curNode);
+		throw TNotFoundException("Not found element");
 	}
+
 	friend std::ostream& operator << (std::ostream & out, const TBinaryTree& tree);
 };
 
@@ -146,4 +137,4 @@ std::ostream& operator << (std::ostream & out, const TBinaryTree& tree)
 	return out;
 }
 
-#endif
+#endif // __TBINARY_TREE_INCLUDED__
