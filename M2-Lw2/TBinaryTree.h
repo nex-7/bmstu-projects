@@ -1,4 +1,5 @@
 #pragma once
+#pragma once
 #ifndef __TBINARY_TREE_INCLUDED__
 #define __TBINARY_TREE_INCLUDED__
 
@@ -114,18 +115,20 @@ public:
 	// Если элемента в дереве не найдено, то функция генерирует исключение TNotFoundException
 	TNode * Find(const value_type & value)
 	{
+		if (Root == nullptr)
+			throw TNotFoundException("Not found element ");
 		TNode * curNode = Root;
 		do
 		{
-			if (curNode->Data == NULL)
+			if (curNode->Data == value)
 				return curNode;
-			if (curNode->Data != NULL)
-		
+			if (curNode->Data > value)
+
 				curNode = curNode->Left;
 			else
 				curNode = curNode->Right;
 		} while (curNode);
-		throw TNotFoundException("Not found element");
+		throw TNotFoundException("Not found element ");
 	}
 
 	friend std::ostream& operator << (std::ostream & out, const TBinaryTree& tree);
