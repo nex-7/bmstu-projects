@@ -69,7 +69,7 @@ public:
 			raii->Close();
 		}
 
-	};
+	}
 };
 
 #endif // __NOTCOPYABLE_INCLUDED__
