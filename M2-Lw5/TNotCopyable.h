@@ -55,16 +55,16 @@ public:
 	{
 		return Descriptor;
 	}
-class RAII
+	class RAII
 	{
-	TNotCopyable *raii;
-public:
-		RAII(){}
+		TNotCopyable *raii;
+	public:
+		RAII() {}
 		RAII(TNotCopyable* ptr)
 		{
 			raii = ptr;
 		}
-		~RAII() 
+		~RAII()
 		{
 			raii->Close();
 		}
