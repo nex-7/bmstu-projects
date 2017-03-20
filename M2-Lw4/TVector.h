@@ -1,10 +1,11 @@
 #ifndef __TVECTOR_INCLUDED__
 #define __TVECTOR_INCLUDED__
+
+
 class out_of_range : 
 public 
 	std::exception
 {};
-
 
 class TVector
 {
