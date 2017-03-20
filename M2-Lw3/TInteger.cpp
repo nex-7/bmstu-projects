@@ -1,4 +1,4 @@
-#include"Header.h"
+#include"TInteger.h"
 
 std::ostream & operator<<(std::ostream &out, const TInteger &rhs) {
 	out << rhs.Data;
