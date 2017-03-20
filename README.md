@@ -1,2 +1,0 @@
-# bmstu-projects
-# MyProjecys
