@@ -1,5 +1,10 @@
 #ifndef __TVECTOR_INCLUDED__
 #define __TVECTOR_INCLUDED__
+class out_of_range : 
+public 
+	std::exception
+{};
+
 
 class TVector
 {
@@ -106,14 +111,14 @@ public:
 	{
 		if (index >= 0 && index < Count) 
 			return Ptr[index];
-		throw std::exception("Error! ");
+		throw std::out_of_range("Error! ");
 	}
 
 	value_type at(size_type index) const
 	{
 		if (index >= 0 && index < Count)
 			return Ptr[index];
-		throw std::exception("Error! ");
+		throw std:::out_of_range("Error! ");
 	}
 
 	reference operator[](size_type index)
@@ -156,7 +161,7 @@ public:
 	void pop_back()
 	{
 		if (Count == 0)
-			throw std::exception("Error! ");
+			throw std:::out_of_range("Error! ");
 		Count--;
 	}
 
@@ -190,7 +195,7 @@ public:
 		int Pos = *pos;
 		if (Pos > Count)
 		{
-			throw std::exception();
+			throw std:::out_of_range();
 		}
 		Count++;
 		reserve(Count);
@@ -207,7 +212,7 @@ public:
 		int Pos = *pos; 
 		if (Pos > Count)
 		{
-			throw std::exception("Error! ");
+			throw std:::out_of_range("Error! ");
 		}
 		Count+=count;
 		reserve(Count);
@@ -225,7 +230,7 @@ public:
 	{
 		if (pos > Ptr + Count)
 		{
-			throw std::exception();
+			throw std:::out_of_range();
 		}
 		for (int i = 0; i < Count - 1; i++) {
 			Ptr[i] = Ptr[i + 1];
@@ -238,7 +243,7 @@ public:
 	{
 		if (last >= Ptr + Count || first > Ptr + Count)
 		{
-			throw std::exception("Error! ");
+			throw std:::out_of_range("Error! ");
 		}
 		for (int i = 0; i + last < Ptr + Count; ++i)
 		{
