@@ -7,10 +7,11 @@ public
 	std::exception
 {};
 
+template<typename T>
 class TVector
 {
 public:
-	using value_type = int;
+	using value_type = Е;
 	using size_type = size_t;
 	using iterator = value_type *;
 	using reference = value_type&;
