@@ -5,7 +5,8 @@
 class out_of_range : 
 public 
 	std::exception
-{};
+{
+};
 
 template<typename T>
 class TVector
