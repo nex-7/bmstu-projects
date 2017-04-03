@@ -4,12 +4,12 @@
 
 
 template<typename T>
-T FromString(const char * data) 
+T FromString(const char * data)
 {
-	throw UnknownType();
+	throw ErrorType();
 }
 
-int intFromChar(char data) 
+int intFromChar(char data)
 {
 	if ('0' <= data && data <= '9')
 		return data - '0';
@@ -18,7 +18,7 @@ int intFromChar(char data)
 }
 
 template<>
-bool FromString<bool>(const char * data) 
+bool FromString<bool>(const char * data)
 {
 	if (strcmp(data, "true") == 0 || strcmp(data, "1") == 0)
 		return true;
@@ -28,13 +28,13 @@ bool FromString<bool>(const char * data)
 }
 
 template<>
-int FromString<int>(const char* data) 
+int FromString<int>(const char* data)
 {
 	bool minus = false;
 	int shift = 0;
 	int length = 0;
 
-	if (data[0] == '-') 
+	if (data[0] == '-')
 	{
 		minus = true;
 		shift = 1;
@@ -45,7 +45,7 @@ int FromString<int>(const char* data)
 		{
 			shift++;
 		}
-		else 
+		else
 		{
 			length++;
 		}
@@ -53,16 +53,16 @@ int FromString<int>(const char* data)
 
 	int result = 0;
 	long long result2 = 0;
-	for (int i = (shift + length) - 1; i >= shift; i--) 
+	for (int i = (shift + length) - 1; i >= shift; i--)
 	{
 		long long plus = intFromChar(data[i]) * pow(10, (shift + length) - i - 1);
-		if (minus) 
+		if (minus)
 		{
 			plus *= -1;
 		}
 		result += plus;
 		result2 += plus;
-		if (result != result2) 
+		if (result != result2)
 		{
 			throw ErrorOver();
 		}
@@ -79,7 +79,7 @@ float FromString<float>(const char * data)
 		length1++;
 	}
 	int length2 = 0;
-	while (data[length1 + 1 + length2] != '\0') 
+	while (data[length1 + 1 + length2] != '\0')
 	{
 		length2++;
 	}
@@ -94,9 +94,9 @@ float FromString<float>(const char * data)
 	return result;
 }
 
-int main() 
+int main()
 {
-	try 
+	try
 	{
 		bool b;
 		b = FromString<bool>("true");
@@ -104,12 +104,12 @@ int main()
 		b = FromString<bool>("trdddue");
 		std::cout << b << std::endl;
 	}
-	catch (ErrorChar & e) 
+	catch (ErrorChar & e)
 	{
 		std::cout << "Error char!" << std::endl;
 	}
 
-	try 
+	try
 	{
 		int i;
 		i = FromString<int>("2147483647");
@@ -119,23 +119,23 @@ int main()
 		i = FromString<int>("56c78");
 		std::cout << i << std::endl;
 	}
-	catch (ErrorChar & e) 
+	catch (ErrorChar & e)
 	{
 		std::cout << "Error char!" << std::endl;
 	}
 
-	try 
+	try
 	{
 		int i;
 		i = FromString<int>("2147483648");
 		std::cout << i << std::endl;
 	}
-	catch (ErrorOver & e) 
+	catch (ErrorOver & e)
 	{
 		std::cout << "Error over!" << std::endl;
 	}
 
-	try 
+	try
 	{
 		float f;
 		f = FromString<float>("127.125");
@@ -143,7 +143,7 @@ int main()
 		f = FromString<float>("4343344.212.11");
 		std::cout << f << std::endl;
 	}
-	catch (ErrorChar & e) 
+	catch (ErrorChar & e)
 	{
 		std::cout << "Error char!" << std::endl;
 	}

@@ -1,5 +1,4 @@
 #pragma once
-#pragma once
 
 #include <exception>
 
@@ -13,4 +12,8 @@ class ErrorChar
 
 class ErrorOver
 	: std::exception
+{};
+
+class  ErrorType
+	:std::exception
 {};
