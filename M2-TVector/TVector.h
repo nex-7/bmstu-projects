@@ -5,13 +5,18 @@
 class out_of_range : 
 public 
 	std::exception
-{};
+{
+};
 
 template<typename T>
 class TVector
 {
 public:
+<<<<<<< HEAD:M2-TVector/TVector.h
 	using value_type =T ; 
+=======
+	using value_type = Е;
+>>>>>>> ecdc4d10d5231b167eeb640751d6e3433dc7cfc8:M2-Lw4/TVector.h
 	using size_type = size_t;
 	using iterator = value_type *;
 	using reference = value_type&;
