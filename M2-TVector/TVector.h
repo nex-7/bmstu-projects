@@ -13,7 +13,6 @@ class TVector
 {
 public:
 	using value_type =T ; 
-	using value_type = Е;
 	using size_type = size_t;
 	using iterator = value_type *;
 	using reference = value_type&;
