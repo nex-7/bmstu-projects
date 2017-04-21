@@ -7,7 +7,9 @@ class EmptyQueue
 	: public std::exception
 {};
 
-template <class T>
+template <
+	class T
+>
 class TQueue {
 public:
 	using container_type = TQueue<T>;
@@ -16,7 +18,8 @@ public:
 	using reference = value_type&;
 	using const_reference = value_type& const;
 private:
-	class Elem {
+	class Elem
+	{
 	private:
 		value_type value;
 		Elem * next;
@@ -28,7 +31,7 @@ private:
 
 		~Elem() {}
 
-		value_type& GetValue() 
+		value_type& GetValue()
 		{
 			return value;
 		}
@@ -38,7 +41,7 @@ private:
 			return next;
 		}
 
-		void SetNext(Elem * el) 
+		void SetNext(Elem * el)
 		{
 			next = el;
 		}
@@ -47,32 +50,23 @@ private:
 public:
 	explicit TQueue()
 		: first(nullptr)
-	{
+	{}
 
-	}
-	
-	~TQueue() 
+	TQueue(const TQueue& other)
 	{
-		while (first != nullptr) pop();
-	}
-
-	TQueue<T>& operator=(const TQueue<T>& other) 
-	{
-		delete first;
-		if (other.first == nullptr) 
+		if (other.first == nullptr)
 		{
-
 			first = nullptr;
 			return *this;
 		}
-		else 
+		else
 		{
 			first = new Elem(other.first->GetValue());
 		}
 
 		Elem * cur1 = first;
 		Elem * cur2 = other.first;
-		while (cur2->GetNext() != nullptr) 
+		while (cur2->GetNext() != nullptr)
 		{
 			cur1->SetNext(new cur2->GetValue());
 			cur1 = cur1->GetNext();
@@ -81,30 +75,60 @@ public:
 		return *this;
 	}
 
-	reference front() 
+	~TQueue()
+	{
+		while (first != nullptr) pop();
+	}
+
+	TQueue<T>& operator=(const TQueue<T>& other)
+	{
+		delete first;
+		if (other.first == nullptr)
+		{
+			first = nullptr;
+			return *this;
+		}
+		else
+		{
+			first = new Elem(other.first->GetValue());
+		}
+
+		Elem * cur1 = first;
+		Elem * cur2 = other.first;
+		while (cur2->GetNext() != nullptr)
+		{
+			cur1->SetNext(new cur2->GetValue());
+			cur1 = cur1->GetNext();
+			cur2 = cur2->GetNext();
+		}
+		return *this;
+	}
+
+	reference front()
+	{
+		if (first == nullptr) throw EmptyQueue();
+
+		return first->GetValue();
+	}
+
+	const_reference front() const
 	{
 		if (first == nullptr) throw EmptyQueue();
 		return first->GetValue();
 	}
 
-	const_reference front() const 
-	{
-		if (first == nullptr) throw EmptyQueue();
-		return first->GetValue();
-	}
-
-	reference back() 
+	reference back()
 	{
 		if (first == nullptr) throw EmptyQueue();
 		Elem * cur = first;
-		while (cur->GetNext() != nullptr) 
+		while (cur->GetNext() != nullptr)
 		{
 			cur = cur->GetNext();
 		}
 		return cur->GetValue();
 	}
 
-	const_reference back() const 
+	const_reference back() const
 	{
 		if (first == nullptr) throw EmptyQueue();
 		Elem * cur = first;
@@ -132,20 +156,20 @@ public:
 
 	void push(const T& value)
 	{
-		if (first == nullptr) 
+		if (first == nullptr)
 		{
 			first = new Elem(value);
 			return;
 		}
 		Elem * cur = first;
-		while (cur->GetNext() != nullptr) 
+		while (cur->GetNext() != nullptr)
 		{
 			cur = cur->GetNext();
 		}
 		return cur->SetNext(new Elem(value));
 	}
 
-	void pop() 
+	void pop()
 	{
 		if (first == nullptr)
 			return;
@@ -154,7 +178,7 @@ public:
 		delete temp;
 	}
 
-	void swap(const TQueue<T>& other) 
+	void swap(TQueue<T>& other)
 	{
 		std::swap(first, other.first);
 	}
