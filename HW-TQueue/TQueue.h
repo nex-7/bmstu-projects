@@ -79,7 +79,10 @@ public:
 	{
 		while (first != nullptr) pop();
 	}
-
+	bool isEmpty() 
+	{
+	return first == nullptr;
+	}
 	TQueue<T>& operator=(const TQueue<T>& other)
 	{
 		delete first;
