@@ -68,12 +68,12 @@ public:
 
 	void reserve(size_type size)
 	{
-		if (Count > size)
+		if (InternalCapacity > size)
 			return;
-		value_type * ptr = new value_type[size];
-		memcpy(ptr, Ptr, Count * sizeof(size_type));
-		delete[] Ptr;
-		Ptr = ptr;
+		TVector copy(*this);
+		Ptr = new value_type[size];
+		for (size_type i = 0; i < Count; i++)
+			Ptr[i] = copy.Ptr[i];
 		InternalCapacity = size;
 	}
 
@@ -177,20 +177,13 @@ public:
 
 	void resize(size_type count, value_type value = value_type())
 	{
-		iterator New = new value_type[InternalCapacity];
-		if (Count = count) 
-			return;
-		memcpy_s(New, InternalCapacity * sizeof(value_type), Ptr, count * sizeof(value_type));
-		if (Count < count)
+		if (count > InternalCapacity)
+			reserve(count);
+		for (int i = Count; i < count; i++)
 		{
-			for (int i = Count; i < count; i++)
-			{
-				New[i] = value;
-			}
+			Ptr[i] = value;
 		}
 		Count = count;
-		delete[] Ptr;
-		Ptr = New; // New Vector
 	}
 
 	iterator insert(iterator pos, const value_type& value)
