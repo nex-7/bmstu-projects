@@ -1,17 +1,13 @@
 #include <iostream>
 #include <string>
-
 using namespace std;
 
-bool check_polindrom(string word)
+bool check_polindrom(string const & a) 
 {
-	int len = word.length();
-	for (int i = 0; i < len / 2; ++i)
+	for (int i = 0, k = a.length() - 1; i < a.length() / 2; i++, k--) 
 	{
-		if (word[i] != word[len - i - 1])
-		{
+		if (a[i] != a[k]) 
 			return false;
-		}
 	}
 	return true;
 }
@@ -32,6 +28,3 @@ int main()
 	system("pause");
 	return 0;
 }
-
-
-
