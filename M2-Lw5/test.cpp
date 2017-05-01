@@ -6,6 +6,9 @@ int main()
 	try
 	{
 		TNotCopyable obj;
+
+		Raii ptr(&obj);
+
 		obj.OpenToWrite("someFile.txt");
 
 		obj.OpenToRead("someOtherFile.txt");
@@ -14,6 +17,7 @@ int main()
 	}
 	catch (const std::exception & e)
 	{
+
 		std::cout << e.what();
 	}
 	system("pause");

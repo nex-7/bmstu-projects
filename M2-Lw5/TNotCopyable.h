@@ -1,4 +1,3 @@
-#pragma once
 #ifndef __NOTCOPYABLE_INCLUDED__
 #define __NOTCOPYABLE_INCLUDED__
 
@@ -33,6 +32,7 @@ public:
 		if (Descriptor != nullptr)
 			throw FileAlreadyOpened();
 		Descriptor = fopen(fileName.c_str(), "w");
+
 	}
 
 	void OpenToRead(std::string const & fileName)
@@ -40,36 +40,35 @@ public:
 		if (Descriptor != nullptr)
 			throw FileAlreadyOpened();
 		Descriptor = fopen(fileName.c_str(), "r");
+
 	}
 
 	void Close() throw()
 	{
 		if (Descriptor != nullptr)
-		{
 			fclose(Descriptor);
-			Descriptor = nullptr;
-		}
 	}
 
 	FILE * Get()
 	{
 		return Descriptor;
 	}
-	class RAII
-	{
-		TNotCopyable *raii;
-	public:
-		RAII() {}
-		RAII(TNotCopyable* ptr)
-		{
-			raii = ptr;
-		}
-		~RAII()
-		{
-			raii->Close();
-		}
-
-	}
 };
 
-#endif // __NOTCOPYABLE_INCLUDED__
+class Raii {
+
+	TNotCopyable * Ptr;
+
+public:
+	Raii() {}
+	Raii(TNotCopyable * ptr) {
+		Ptr = ptr;
+	}
+	~Raii() {
+		if (Ptr != nullptr)
+			Ptr->Close();
+	}
+
+};
+
+#endif // __NOTCOPYABLE_INCLUDED__#pragma once
