@@ -213,8 +213,6 @@ void TSupervisor::doCommand(std::string& cmd)
 	size_t argc = commandArgc(cmd);
 	///Посчитали количество аргументов
 	if (!argc)
-	///Если нет аргументов, то надо просто
-	///прекратить выполнение функции
 	{
 		return;
 	}
