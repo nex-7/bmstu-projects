@@ -1,13 +1,14 @@
 #include"TInteger.h"
 
-std::ostream & operator<<(std::ostream &out, const TInteger &rhs) {
+std::ostream & operator<<(std::ostream &out, const TInteger &rhs)
+{
 	out << rhs.Data;
 	return out;
 }
-bool TInteger::Check(long long int data)
+void TInteger::Check(long long int data)
 {
-	if (data > MAX_VALUE || data < MIN_VALUE) throw excess();
-	return true;
+	if (data > MAX_VALUE || data < MIN_VALUE)
+		throw Excess();
 }
 TInteger::TInteger()
 {}
@@ -19,9 +20,7 @@ TInteger::TInteger(long long int data)
 }
 
 TInteger::~TInteger()
-{
-
-}
+{}
 
 TInteger operator+(const TInteger &a, const TInteger &b)
 {
@@ -183,17 +182,17 @@ TInteger & TInteger::operator%=(const long long int data)
 	return *this;
 }
 
-TInteger operator/(const TInteger &a, const TInteger &b) 
+TInteger operator/(const TInteger &a, const TInteger &b)
 {
 	return TInteger(a) /= TInteger(b);
 }
 
-TInteger operator/(const TInteger &a, const long long int data) 
+TInteger operator/(const TInteger &a, const long long int data)
 {
 	return TInteger(a) /= data;
 }
 
-TInteger operator/(const long long int data, const TInteger &a) 
+TInteger operator/(const long long int data, const TInteger &a)
 {
 	return TInteger(a) /= data;
 };

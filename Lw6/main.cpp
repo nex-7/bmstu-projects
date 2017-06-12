@@ -7,6 +7,7 @@ int switchAnimals(TZoo & zoo1,int i1, TZoo & zoo2, int i2){
     zoo2.AddNewAnimal(&zoo1[i1]);
     zoo1.deleteByIndex(i1);
     zoo2.deleteByIndex(i2);
+	return 0;
 }
 
 int main() {
@@ -24,7 +25,8 @@ int main() {
         delete slon;
     if (!myZoo_second.AddNewAnimal(&gip))
         delete gip;
-    for (size_t i = 0; i < 100; ++i) {
+    for (size_t i = 0; i < 100; ++i) 
+	{
         myZoo_first.Work();
         myZoo_second.Work();
         if (i == 5) {

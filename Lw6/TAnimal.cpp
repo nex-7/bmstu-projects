@@ -23,28 +23,46 @@ TAnimal::TAnimal(const std::string & name)
 }
 
 std::string TAnimal::GetName() const
-{return Name; }
+{
+	return Name; 
+}
 
 float TAnimal::Years() const
-{return Age;}
+{
+	return Age;
+}
 
 bool TAnimal::living() const
-{return alive; }
+{
+	return alive;
+}
 
 void TAnimal::killHim(bool l)
-{alive = l; }
+{
+	alive = l; 
+}
 
 void TAnimal::increaseAge(float y)
-{Age +=y; }
+{
+	Age +=y; 
+}
 
 void TAnimal::setType(int l)
-{type = l; }
+{
+	type = l; 
+}
 
 bool TAnimal::vPare() const
-{return isPair; }
+{
+	return isPair; 
+}
 
 void TAnimal::createPara(bool i)
-{isPair = i; }
+{
+	isPair = i; 
+}
 
 int TAnimal::getType() const
-{return type; }
+{
+	return type; 
+}
