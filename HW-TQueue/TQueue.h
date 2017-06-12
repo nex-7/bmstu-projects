@@ -79,7 +79,7 @@ public:
 	{
 		while (first != nullptr) pop();
 	}
-	bool isEmpty() 
+	bool Empty() 
 	{
 	return first == nullptr;
 	}
