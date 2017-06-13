@@ -56,15 +56,15 @@ private:
 	}
 public:
 
-	// возвращает функцию которая равна xn с размерностью dimension
-	// пример 1
+	// ГўГ®Г§ГўГ°Г Г№Г ГҐГІ ГґГіГ­ГЄГ¶ГЁГѕ ГЄГ®ГІГ®Г°Г Гї Г°Г ГўГ­Г  xn Г± Г°Г Г§Г¬ГҐГ°Г­Г®Г±ГІГјГѕ dimension
+	// ГЇГ°ГЁГ¬ГҐГ° 1
 	// n = 0
 	// dimension = 3
-	// вернется функция "01010101"
-	// пример 2
+	// ГўГҐГ°Г­ГҐГІГ±Гї ГґГіГ­ГЄГ¶ГЁГї "01010101"
+	// ГЇГ°ГЁГ¬ГҐГ° 2
 	// n = 1
 	// dimension = 4
-	// вернется функция "0011001100110011"
+	// ГўГҐГ°Г­ГҐГІГ±Гї ГґГіГ­ГЄГ¶ГЁГї "0011001100110011"
 	static boolean_function var(size_t n, size_t dimension)
 	{
 		boolean_function f(dimension);
@@ -76,14 +76,14 @@ public:
 		return f;
 	}
 
-	// тождественный ноль "от dimension переменных"
+	// ГІГ®Г¦Г¤ГҐГ±ГІГўГҐГ­Г­Г»Г© Г­Г®Г«Гј "Г®ГІ dimension ГЇГҐГ°ГҐГ¬ГҐГ­Г­Г»Гµ"
 	static boolean_function zero(size_t dimension)
 	{
 		boolean_function z(dimension);
 		return z;
 	}
 
-	// тождественная единица "от dimension переменных"
+	// ГІГ®Г¦Г¤ГҐГ±ГІГўГҐГ­Г­Г Гї ГҐГ¤ГЁГ­ГЁГ¶Г  "Г®ГІ dimension ГЇГҐГ°ГҐГ¬ГҐГ­Г­Г»Гµ"
 	static boolean_function one(size_t dimension)
 	{
 		boolean_function on(dimension);
@@ -112,18 +112,18 @@ public:
 
 	boolean_function() = default;
 
-	// задает фунцию тождественного нуля от n переменных
+	// Г§Г Г¤Г ГҐГІ ГґГіГ­Г¶ГЁГѕ ГІГ®Г¦Г¤ГҐГ±ГІГўГҐГ­Г­Г®ГЈГ® Г­ГіГ«Гї Г®ГІ n ГЇГҐГ°ГҐГ¬ГҐГ­Г­Г»Гµ
 	boolean_function(size_t n)
 	{
 		func.resize(pow(2, n));
 		std::fill(func.begin(), func.end(), 0);
 	}
 
-	// задает фунцию от n переменных. значение равно value
-	// пример
-	// пусть value = 14, т.е. 0...00001110 в двоичной системе
-	// а n = 3
-	// тогда АНФ boolean_function будет равна x + y + xy + zx + zy + zyx
+	// Г§Г Г¤Г ГҐГІ ГґГіГ­Г¶ГЁГѕ Г®ГІ n ГЇГҐГ°ГҐГ¬ГҐГ­Г­Г»Гµ. Г§Г­Г Г·ГҐГ­ГЁГҐ Г°Г ГўГ­Г® value
+	// ГЇГ°ГЁГ¬ГҐГ°
+	// ГЇГіГ±ГІГј value = 14, ГІ.ГҐ. 0...00001110 Гў Г¤ГўГ®ГЁГ·Г­Г®Г© Г±ГЁГ±ГІГҐГ¬ГҐ
+	// Г  n = 3
+	// ГІГ®ГЈГ¤Г  ГЂГЌГ” boolean_function ГЎГіГ¤ГҐГІ Г°Г ГўГ­Г  x + y + xy + zx + zy + zyx
 	boolean_function(unsigned long long value, size_type n)
 	{
 		while (value)
@@ -138,8 +138,8 @@ public:
 		std::reverse(func.begin(), func.end());
 	}
 
-	// пусть table = "01110000"
-	// тогда АНФ boolean_function будет равна x + y + xy + zx + zy + zyx
+	// ГЇГіГ±ГІГј table = "01110000"
+	// ГІГ®ГЈГ¤Г  ГЂГЌГ” boolean_function ГЎГіГ¤ГҐГІ Г°Г ГўГ­Г  x + y + xy + zx + zy + zyx
 	boolean_function(const std::string& table) // 48 = '0'; 49= '1'
 	{
 		size_t dim = log2(table.length());
@@ -155,8 +155,8 @@ public:
 		}
 	}
 
-	// пусть table = {true, false, false, true};
-	// тогда АНФ boolean_function будет равна x + y + 1
+	// ГЇГіГ±ГІГј table = {true, false, false, true};
+	// ГІГ®ГЈГ¤Г  ГЂГЌГ” boolean_function ГЎГіГ¤ГҐГІ Г°Г ГўГ­Г  x + y + 1
 	boolean_function(const std::vector<value_type>& table)
 	{
 		size_t dim = log2(table.size());
@@ -187,8 +187,8 @@ public:
 		return *this;
 	}
 
-	// сложение по модулю 2
-	// если разное количество переменных - исключение
+	// Г±Г«Г®Г¦ГҐГ­ГЁГҐ ГЇГ® Г¬Г®Г¤ГіГ«Гѕ 2
+	// ГҐГ±Г«ГЁ Г°Г Г§Г­Г®ГҐ ГЄГ®Г«ГЁГ·ГҐГ±ГІГўГ® ГЇГҐГ°ГҐГ¬ГҐГ­Г­Г»Гµ - ГЁГ±ГЄГ«ГѕГ·ГҐГ­ГЁГҐ
 	boolean_function& operator += (const boolean_function& rhs)
 	{
 		if (this->size() != rhs.size())
@@ -200,8 +200,8 @@ public:
 		return *this;
 	}
 
-	// конъюнкция
-	// если разное количество переменных - исключение
+	// ГЄГ®Г­ГєГѕГ­ГЄГ¶ГЁГї
+	// ГҐГ±Г«ГЁ Г°Г Г§Г­Г®ГҐ ГЄГ®Г«ГЁГ·ГҐГ±ГІГўГ® ГЇГҐГ°ГҐГ¬ГҐГ­Г­Г»Гµ - ГЁГ±ГЄГ«ГѕГ·ГҐГ­ГЁГҐ
 	boolean_function& operator *= (const boolean_function& rhs)
 	{
 		if (this->size() != rhs.size())
@@ -212,8 +212,8 @@ public:
 		}
 	}
 
-	// дизъюнкция
-	// если разное количество переменных - исключение
+	// Г¤ГЁГ§ГєГѕГ­ГЄГ¶ГЁГї
+	// ГҐГ±Г«ГЁ Г°Г Г§Г­Г®ГҐ ГЄГ®Г«ГЁГ·ГҐГ±ГІГўГ® ГЇГҐГ°ГҐГ¬ГҐГ­Г­Г»Гµ - ГЁГ±ГЄГ«ГѕГ·ГҐГ­ГЁГҐ
 	boolean_function& operator |= (const boolean_function& rhs)
 	{
 		if (this->size() != rhs.size())
@@ -224,7 +224,7 @@ public:
 		}
 	}
 
-	// побитовое отрицание
+	// ГЇГ®ГЎГЁГІГ®ГўГ®ГҐ Г®ГІГ°ГЁГ¶Г Г­ГЁГҐ
 	boolean_function operator ~ ()
 	{
 		func.flip();
@@ -232,8 +232,8 @@ public:
 	}
 
 
-	// true если функции равны
-	//  иначе false
+	// true ГҐГ±Г«ГЁ ГґГіГ­ГЄГ¶ГЁГЁ Г°Г ГўГ­Г»
+	//  ГЁГ­Г Г·ГҐ false
 	bool operator == (const boolean_function& rhs) const
 	{
 		size_t n;
@@ -252,9 +252,9 @@ public:
 
 	}
 
-	// true если одна функция сравнима и больше или равна rhs
-	// false если сравнима и меньше rhs
-	// logic_error если фунции не сравнимы
+	// true ГҐГ±Г«ГЁ Г®Г¤Г­Г  ГґГіГ­ГЄГ¶ГЁГї Г±Г°Г ГўГ­ГЁГ¬Г  ГЁ ГЎГ®Г«ГјГёГҐ ГЁГ«ГЁ Г°Г ГўГ­Г  rhs
+	// false ГҐГ±Г«ГЁ Г±Г°Г ГўГ­ГЁГ¬Г  ГЁ Г¬ГҐГ­ГјГёГҐ rhs
+	// logic_error ГҐГ±Г«ГЁ ГґГіГ­Г¶ГЁГЁ Г­ГҐ Г±Г°Г ГўГ­ГЁГ¬Г»
 	bool operator >= (const boolean_function& rhs) const
 	{
 		if (this->size() == rhs.size())
@@ -318,21 +318,21 @@ public:
 		return func.cend();
 	}
 
-	// длина столбца функции
+	// Г¤Г«ГЁГ­Г  Г±ГІГ®Г«ГЎГ¶Г  ГґГіГ­ГЄГ¶ГЁГЁ
 	size_type size() const throw()
 	{
 		return func.size();
 	}
 
-	// количество переменных
+	// ГЄГ®Г«ГЁГ·ГҐГ±ГІГўГ® ГЇГҐГ°ГҐГ¬ГҐГ­Г­Г»Гµ
 	size_type dimension() const throw()
 	{
 		return log2(func.size());
 	}
 
-	// возвращает значение функции
-	// пусть boolean_function задает функцию f(x, y, z)
-	// тогда функция вернет f(vars[0], vars[1], vars[2])
+	// ГўГ®Г§ГўГ°Г Г№Г ГҐГІ Г§Г­Г Г·ГҐГ­ГЁГҐ ГґГіГ­ГЄГ¶ГЁГЁ
+	// ГЇГіГ±ГІГј boolean_function Г§Г Г¤Г ГҐГІ ГґГіГ­ГЄГ¶ГЁГѕ f(x, y, z)
+	// ГІГ®ГЈГ¤Г  ГґГіГ­ГЄГ¶ГЁГї ГўГҐГ°Г­ГҐГІ f(vars[0], vars[1], vars[2])
 	bool operator()(const std::vector<bool>& vars) const
 	{
 		int t = 0;
@@ -357,8 +357,8 @@ public:
 	}
 
 
-	// T(x1, x2, ..., xN) - текущая функция
-	// operator вернет новую функцию, которая равна композиции G = T(fs[0], fs[1], ..., fs[N-1])
+	// T(x1, x2, ..., xN) - ГІГҐГЄГіГ№Г Гї ГґГіГ­ГЄГ¶ГЁГї
+	// operator ГўГҐГ°Г­ГҐГІ Г­Г®ГўГіГѕ ГґГіГ­ГЄГ¶ГЁГѕ, ГЄГ®ГІГ®Г°Г Гї Г°Г ГўГ­Г  ГЄГ®Г¬ГЇГ®Г§ГЁГ¶ГЁГЁ G = T(fs[0], fs[1], ..., fs[N-1])
 	boolean_function operator()(const std::vector<boolean_function>& fs) const
 	{
 		std::vector<boolean_function> tmp = fs;
@@ -400,12 +400,26 @@ public:
 
 	bool is_monotone() const
 	{
-		if (func.size() == 0)
-			throw std::exception("");
-		for (size_t i = 0; i < func.size() - 1; ++i)
-			if (func[i] > func[i + 1])
-				return false;
-		return true;
+        {
+            if (func.size() == 0)
+            {
+                throw std::exception("Empty");
+            }
+            for (size_t i = 0; i < func.size(); ++i)
+            {
+                for (size_t j = 0; j < dimension(); ++j)
+                {
+                    if ((size_t(pow(2, j)) & i) == 0)
+                    {
+                        if (func[i + size_type(pow(2, j))] < func[i])
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+            return true;
+        }
 	}
 	bool is_symmetric() const
 	{
@@ -438,7 +452,7 @@ public:
 	{
 		return (*(func.begin()) == 0);
 	}
-	bool is_balanced() const //равновесная ли
+	bool is_balanced() const //Г°Г ГўГ­Г®ГўГҐГ±Г­Г Гї Г«ГЁ
 	{
 		return this->weight() == this->size() / 2;
 	}
@@ -464,7 +478,7 @@ public:
 			return false;
 	}
 
-	// Возвращает АНФ функции
+	// Г‚Г®Г§ГўГ°Г Г№Г ГҐГІ ГЂГЌГ” ГґГіГ­ГЄГ¶ГЁГЁ
 	std::vector<value_type> anf() const
 	{
 		std::vector<value_type> func(func);
@@ -493,8 +507,8 @@ public:
 
 };
 
-// пусть boolean_function представляет из себя функцию "01110000"
-// тогда get_polynom вернет строку "x0 + x1 + x0x1 + x0x2 + x1x2 + x0x1x2"
+// ГЇГіГ±ГІГј boolean_function ГЇГ°ГҐГ¤Г±ГІГ ГўГ«ГїГҐГІ ГЁГ§ Г±ГҐГЎГї ГґГіГ­ГЄГ¶ГЁГѕ "01110000"
+// ГІГ®ГЈГ¤Г  get_polynom ГўГҐГ°Г­ГҐГІ Г±ГІГ°Г®ГЄГі "x0 + x1 + x0x1 + x0x2 + x1x2 + x0x1x2"
 std::string get_polynom(const boolean_function & obj)
 {
 	std::vector<bool> an = obj.anf();
