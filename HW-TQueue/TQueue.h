@@ -57,13 +57,13 @@ public:
         if (other.first == nullptr)
         {
             first = nullptr;
-            return *this;
+            return;
         }
         else
         {
             first = new Elem(other.first->GetValue());
         }
-
+​
         Elem * cur1 = first;
         Elem * cur2 = other.first;
         while (cur2->GetNext() != nullptr)
@@ -72,7 +72,6 @@ public:
             cur1 = cur1->GetNext();
             cur2 = cur2->GetNext();
         }
-        return *this;
     }
 
     ~TQueue()
